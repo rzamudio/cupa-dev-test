@@ -11,7 +11,7 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <AnimatePresence mode="wait">
           <Routes>
             <Route path="/" element={<Home />} />
