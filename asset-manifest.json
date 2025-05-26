@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/cupa-dev-test/static/css/main.20ff5911.css",
-    "main.js": "/cupa-dev-test/static/js/main.a221b0bf.js",
+    "main.css": "/cupa-dev-test/static/css/main.b11f9cf3.css",
+    "main.js": "/cupa-dev-test/static/js/main.d0e7a34c.js",
     "static/js/453.a493e048.chunk.js": "/cupa-dev-test/static/js/453.a493e048.chunk.js",
     "index.html": "/cupa-dev-test/index.html",
-    "main.20ff5911.css.map": "/cupa-dev-test/static/css/main.20ff5911.css.map",
-    "main.a221b0bf.js.map": "/cupa-dev-test/static/js/main.a221b0bf.js.map",
+    "main.b11f9cf3.css.map": "/cupa-dev-test/static/css/main.b11f9cf3.css.map",
+    "main.d0e7a34c.js.map": "/cupa-dev-test/static/js/main.d0e7a34c.js.map",
     "453.a493e048.chunk.js.map": "/cupa-dev-test/static/js/453.a493e048.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.20ff5911.css",
-    "static/js/main.a221b0bf.js"
+    "static/css/main.b11f9cf3.css",
+    "static/js/main.d0e7a34c.js"
   ]
 }
