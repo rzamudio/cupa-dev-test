@@ -6,7 +6,7 @@ import axios from "axios";
 const getQuizDetails = async (): Promise<QuizDetails> => {
   // Finally add this
   const response = await axios.get(
-    "https://s3.eu-west-2.amazonaws.com/interview.mock.data/payload.json"
+    "https://cors-anywhere.herokuapp.com/https://s3.eu-west-2.amazonaws.com/interview.mock.data/payload.json"
   );
 
   console.log("response.data!: ", response.data);
