@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.99606a07.css",
-    "main.js": "/static/js/main.6498d799.js",
-    "static/js/453.a493e048.chunk.js": "/static/js/453.a493e048.chunk.js",
-    "index.html": "/index.html",
-    "main.99606a07.css.map": "/static/css/main.99606a07.css.map",
-    "main.6498d799.js.map": "/static/js/main.6498d799.js.map",
-    "453.a493e048.chunk.js.map": "/static/js/453.a493e048.chunk.js.map"
+    "main.css": "/cupa-dev-test/static/css/main.99606a07.css",
+    "main.js": "/cupa-dev-test/static/js/main.5c0b59b6.js",
+    "static/js/453.a493e048.chunk.js": "/cupa-dev-test/static/js/453.a493e048.chunk.js",
+    "index.html": "/cupa-dev-test/index.html",
+    "main.99606a07.css.map": "/cupa-dev-test/static/css/main.99606a07.css.map",
+    "main.5c0b59b6.js.map": "/cupa-dev-test/static/js/main.5c0b59b6.js.map",
+    "453.a493e048.chunk.js.map": "/cupa-dev-test/static/js/453.a493e048.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.99606a07.css",
-    "static/js/main.6498d799.js"
+    "static/js/main.5c0b59b6.js"
   ]
 }
