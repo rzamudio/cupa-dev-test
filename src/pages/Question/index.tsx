@@ -29,7 +29,7 @@ function Question() {
   const [progress, setProgress] = useState<number>(0);
   const [triggerAnimation, setTriggerAnimation] = useState(false);
 
-  const { data: quizDetails, isLoading, error } = useGetQuizDetails();
+  const { data: quizDetails } = useGetQuizDetails();
 
   const filteredQuestions: Activity = quizDetails?.activities?.find((data) =>
     data.activity_name.toLowerCase().includes(activity_name?.toLowerCase()!)
@@ -56,6 +56,7 @@ function Question() {
       3;
   }
 
+  // function to evaluate if the user answered correctly
   function evaluateUserAnswers(
     prevAnswers: string[],
     answer: string,
@@ -70,6 +71,7 @@ function Question() {
     else return [...prevAnswers, USER_ANSWER.CORRECT];
   }
 
+  // Button action when user answers a question
   const goToPage = (page: number, answer: string, is_correct: boolean) => {
     setTriggerAnimation(true);
     setTimeout(() => {
@@ -140,14 +142,13 @@ function Question() {
         navigate(`/question/${activity_name}`, { replace: true });
         setTriggerAnimation(true);
       }, 1000);
-      const animationTimer = setTimeout(() => {
+      setTimeout(() => {
         setTriggerAnimation(false);
       }, 1100);
 
       // cleanup function
       return () => {
         clearTimeout(timer);
-        clearTimeout(animationTimer);
       };
     }
   }, [
@@ -160,126 +161,139 @@ function Question() {
   ]);
 
   return (
-    <AnimatePresence mode="wait">
-      {!triggerAnimation && (
-        <motion.div
-          className="page"
-          variants={pageVariants}
-          initial="initial"
-          animate="animate"
-          exit="exit"
-          transition={{ duration: 0.5 }}
-          style={{ position: "absolute", width: "100%", height: "100%" }}
-        >
-          <div className="App">
-            <div className="activity_container">
-              <div className="header_container">
-                <p className="activity_counter">
-                  {activity_name?.toUpperCase()}
-                  {!isRoundStart &&
-                    areQuestionsPerRound &&
-                    " / " + roundTitle?.toUpperCase()}
-                </p>
-                <p className="question_counter">
-                  {isRoundStart && areQuestionsPerRound
-                    ? roundTitle?.toUpperCase()
-                    : `Q` +
-                      filteredQuestions?.questions[currentPage].order +
-                      "."}
-                </p>
-              </div>
-              {areQuestionsPerRound && !isRoundStart ? (
-                <div
-                  className="question_container"
-                  dangerouslySetInnerHTML={{
-                    __html: roundQuestions![currentPage].stimulus.replace(
-                      /\*(.*?)\*/g,
-                      "<strong>$1</strong>"
-                    ),
-                  }}
-                ></div>
-              ) : areQuestionsPerRound && isRoundStart ? (
-                <></>
-              ) : (
-                <div
-                  className="question_container"
-                  dangerouslySetInnerHTML={{
-                    __html: filteredQuestions.questions[
-                      currentPage
-                    ].stimulus?.replace(/\*(.*?)\*/g, "<strong>$1</strong>")!,
-                  }}
-                ></div>
-              )}
-
-              {isRoundStart && areQuestionsPerRound ? (
-                <div className="empty_container"></div>
-              ) : (
-                <div className="question_buttons_container">
-                  <div className="button_item">
-                    <CustomButton
-                      onPress={() => {
-                        if (areQuestionsPerRound) {
-                          goToPage(
-                            currentPage + 1,
-                            USER_ANSWER.CORRECT,
-                            roundQuestions?.[currentPage].is_correct!
-                          );
-                        } else {
-                          goToPage(
-                            currentPage + 1,
-                            USER_ANSWER.CORRECT,
-                            filteredQuestions?.questions[currentPage]
-                              .is_correct!
-                          );
-                        }
-                      }}
-                    >
-                      <div
-                        style={{
-                          padding: "24px 84px 23px 83px",
-                          borderTop: "1px solid #c7e6fe",
-                        }}
-                      >
-                        {USER_ANSWER.CORRECT}
-                      </div>
-                    </CustomButton>
-                  </div>
-                  <div className="button_item">
-                    <CustomButton
-                      onPress={() => {
-                        if (areQuestionsPerRound) {
-                          goToPage(
-                            currentPage + 1,
-                            USER_ANSWER.INCORRECT,
-                            roundQuestions?.[currentPage].is_correct!
-                          );
-                        } else {
-                          goToPage(
-                            currentPage + 1,
-                            USER_ANSWER.INCORRECT,
-                            filteredQuestions?.questions[currentPage]
-                              .is_correct!
-                          );
-                        }
-                      }}
-                    >
-                      <div
-                        style={{
-                          padding: "24px 84px 0px 83px",
-                          borderTop: "1px solid #c7e6fe",
-                        }}
-                      >
-                        {USER_ANSWER.INCORRECT}
-                      </div>
-                    </CustomButton>
-                  </div>
+    <div
+      style={{
+        position: "relative",
+        overflow: "hidden",
+        width: "100%",
+        height: "100vh",
+      }}
+    >
+      <AnimatePresence mode="wait">
+        {!triggerAnimation && (
+          <motion.div
+            className="page"
+            variants={pageVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            transition={{ duration: 0.4 }}
+            style={{
+              position: "absolute",
+              width: "100%",
+              height: "100%",
+            }}
+          >
+            <div className="App">
+              <div className="activity_container">
+                <div className="header_container">
+                  <p className="activity_counter">
+                    {activity_name?.toUpperCase()}
+                    {!isRoundStart &&
+                      areQuestionsPerRound &&
+                      " / " + roundTitle?.toUpperCase()}
+                  </p>
+                  <p className="question_counter">
+                    {isRoundStart && areQuestionsPerRound
+                      ? roundTitle?.toUpperCase()
+                      : `Q` +
+                        filteredQuestions?.questions[currentPage].order +
+                        "."}
+                  </p>
                 </div>
-              )}
+                {areQuestionsPerRound && !isRoundStart ? (
+                  <div
+                    className="question_container"
+                    dangerouslySetInnerHTML={{
+                      __html: roundQuestions![currentPage].stimulus.replace(
+                        /\*(.*?)\*/g,
+                        "<strong>$1</strong>"
+                      ),
+                    }}
+                  ></div>
+                ) : areQuestionsPerRound && isRoundStart ? (
+                  <></>
+                ) : (
+                  <div
+                    className="question_container"
+                    dangerouslySetInnerHTML={{
+                      __html: filteredQuestions.questions[
+                        currentPage
+                      ].stimulus?.replace(/\*(.*?)\*/g, "<strong>$1</strong>")!,
+                    }}
+                  ></div>
+                )}
+
+                {isRoundStart && areQuestionsPerRound ? (
+                  <div className="empty_container"></div>
+                ) : (
+                  <div className="question_buttons_container">
+                    <div className="button_item">
+                      <CustomButton
+                        onPress={() => {
+                          if (areQuestionsPerRound) {
+                            goToPage(
+                              currentPage + 1,
+                              USER_ANSWER.CORRECT,
+                              roundQuestions?.[currentPage].is_correct!
+                            );
+                          } else {
+                            goToPage(
+                              currentPage + 1,
+                              USER_ANSWER.CORRECT,
+                              filteredQuestions?.questions[currentPage]
+                                .is_correct!
+                            );
+                          }
+                        }}
+                      >
+                        <div
+                          style={{
+                            padding: "24px 84px 23px 83px",
+                            borderTop: "1px solid #c7e6fe",
+                          }}
+                        >
+                          {USER_ANSWER.CORRECT}
+                        </div>
+                      </CustomButton>
+                    </div>
+                    <div className="button_item">
+                      <CustomButton
+                        onPress={() => {
+                          if (areQuestionsPerRound) {
+                            goToPage(
+                              currentPage + 1,
+                              USER_ANSWER.INCORRECT,
+                              roundQuestions?.[currentPage].is_correct!
+                            );
+                          } else {
+                            goToPage(
+                              currentPage + 1,
+                              USER_ANSWER.INCORRECT,
+                              filteredQuestions?.questions[currentPage]
+                                .is_correct!
+                            );
+                          }
+                        }}
+                      >
+                        <div
+                          style={{
+                            padding: "24px 84px 0px 83px",
+                            borderTop: "1px solid #c7e6fe",
+                          }}
+                        >
+                          {USER_ANSWER.INCORRECT}
+                        </div>
+                      </CustomButton>
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }
 
