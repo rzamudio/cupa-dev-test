@@ -247,18 +247,14 @@ function Question() {
                           }
                         }}
                       >
-                        <div
-                          style={{
-                            padding: "24px 84px 23px 83px",
-                            borderTop: "1px solid #c7e6fe",
-                          }}
-                        >
+                        <div className="button_container">
                           {USER_ANSWER.CORRECT}
                         </div>
                       </CustomButton>
                     </div>
                     <div className="button_item">
                       <CustomButton
+                        className="button_style"
                         onPress={() => {
                           if (areQuestionsPerRound) {
                             goToPage(
@@ -276,12 +272,7 @@ function Question() {
                           }
                         }}
                       >
-                        <div
-                          style={{
-                            padding: "24px 84px 0px 83px",
-                            borderTop: "1px solid #c7e6fe",
-                          }}
-                        >
+                        <div className="button_container">
                           {USER_ANSWER.INCORRECT}
                         </div>
                       </CustomButton>
