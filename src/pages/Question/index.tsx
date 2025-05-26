@@ -17,11 +17,6 @@ enum USER_ANSWER {
   INCORRECT = "INCORRECT",
 }
 
-type GroupedAnswers = {
-  round_title: string;
-  answers: string[];
-};
-
 function Question() {
   const navigate = useNavigate();
   const { activity_name } = useParams();
@@ -29,7 +24,6 @@ function Question() {
   const [evaluatedAnswers, setEvaluatedAnswers] = useState<string[]>([]);
   const [isRoundStart, setIsRoundStart] = useState<boolean>(true);
   const [roundNumber, setRoundNumber] = useState<number>(1);
-  const [numberOfRounds, setNumberOfRounds] = useState<number>(0);
   const [roundQuestions, setRoundQuestion] = useState<RoundQuestion[]>();
   const [roundTitle, setRoundTitle] = useState<string>();
   const [progress, setProgress] = useState<number>(0);
@@ -61,8 +55,6 @@ function Question() {
       ) -
       3;
   }
-
-  console.log("pageCount: ", pageCount);
 
   function evaluateUserAnswers(
     prevAnswers: string[],
@@ -97,11 +89,8 @@ function Question() {
         });
         return;
       }
-      console.log("roundQuestions?.length: ", roundQuestions?.length);
       if (page < 1 || page > roundQuestions?.length! - 1) {
-        console.log("HAHA 1");
         setIsRoundStart(true);
-        setNumberOfRounds(filteredQuestions.questions.length);
         setRoundNumber((prev) => prev + 1);
         setRoundQuestion(
           filteredQuestions.questions.find(
@@ -109,7 +98,6 @@ function Question() {
           )?.questions
         );
       } else {
-        console.log("HAHA 2");
         setCurrentPage(page);
       }
     } else {
@@ -133,7 +121,6 @@ function Question() {
     if (areQuestionsPerRound && isRoundStart) {
       setCurrentPage(0);
       setIsRoundStart(true);
-      setNumberOfRounds(filteredQuestions.questions.length);
       setRoundTitle(
         filteredQuestions.questions.find((data) => data.order === roundNumber)
           ?.round_title
@@ -144,29 +131,25 @@ function Question() {
           (data) => data.round_title === roundTitle
         )?.questions
       );
+
+      // Add delay when displaying round title screen
+      // Add animation
       const timer = setTimeout(() => {
         setIsRoundStart(false);
         setEvaluatedAnswers((prev: any) => [...prev, roundTitle]);
         navigate(`/question/${activity_name}`, { replace: true });
         setTriggerAnimation(true);
       }, 1000);
-      setTimeout(() => {
+      const animationTimer = setTimeout(() => {
         setTriggerAnimation(false);
       }, 1100);
-      return () => clearTimeout(timer);
-    }
 
-    console.log("isRoundStart: ", isRoundStart);
-    console.log("areQuestionsPerRound: ", areQuestionsPerRound);
-    console.log("roundQuestions: ", roundQuestions);
-    console.log("currentPage: ", currentPage);
-    console.log("roundTitle: ", roundTitle);
-    console.log("progress: ", progress);
-    console.log("evaluatedAnswers: ", evaluatedAnswers);
-    // console.log(
-    //   " roundQuestions![currentPage].stimulus",
-    //   roundQuestions![currentPage].stimulus
-    // );
+      // cleanup function
+      return () => {
+        clearTimeout(timer);
+        clearTimeout(animationTimer);
+      };
+    }
   }, [
     isRoundStart,
     roundNumber,
@@ -267,13 +250,13 @@ function Question() {
                         if (areQuestionsPerRound) {
                           goToPage(
                             currentPage + 1,
-                            USER_ANSWER.CORRECT,
+                            USER_ANSWER.INCORRECT,
                             roundQuestions?.[currentPage].is_correct!
                           );
                         } else {
                           goToPage(
                             currentPage + 1,
-                            USER_ANSWER.CORRECT,
+                            USER_ANSWER.INCORRECT,
                             filteredQuestions?.questions[currentPage]
                               .is_correct!
                           );

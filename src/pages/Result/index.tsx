@@ -1,6 +1,5 @@
 import "./styles.css";
 import "../../App.css";
-import CustomButton from "../../components/CustomButton";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 
@@ -17,6 +16,10 @@ function Result() {
 
   const { activity_name } = useParams();
 
+  const filteredAnswers = evaluatedResults.filter((item) =>
+    item.includes("CORRECT")
+  );
+
   return (
     <motion.div
       className="page"
@@ -32,7 +35,7 @@ function Result() {
           <p className="branding">{activity_name?.toUpperCase()}</p>
           <p className="title">RESULTS</p>
           <div className="hide-scroll_view">
-            {evaluatedResults?.map((data, index) => (
+            {filteredAnswers?.map((data, index) => (
               <>
                 {data.includes("CORRECT") ? (
                   <div className="results_item_container" key={index}>

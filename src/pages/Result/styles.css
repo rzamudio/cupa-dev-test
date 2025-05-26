@@ -6,12 +6,6 @@
   border: 1px solid #c7e6fe;
 }
 
-.header_container {
-  align-self: flex-start;
-  margin: 0px 48px 0px 48px;
-  text-align: center;
-}
-
 .results_item_container {
   display: flex;
   justify-content: space-between;
@@ -62,7 +56,6 @@
   overflow-y: scroll;
 }
 
-/* styles.css */
 .hide-scroll_view {
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE 10+ */

@@ -1,15 +1,13 @@
 import { QuizDetails } from "../types";
-import { getQuizDetailsMock } from "../mocks/getQuizDetailsMock";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 const getQuizDetails = async (): Promise<QuizDetails> => {
-  // Finally add this
+  // Use proxy for demo purposes only. CORS config should be done in BE
   const response = await axios.get(
     "https://cors-anywhere.herokuapp.com/https://s3.eu-west-2.amazonaws.com/interview.mock.data/payload.json"
   );
 
-  console.log("response.data!: ", response.data);
   return response.data;
 };
 
