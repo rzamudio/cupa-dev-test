@@ -2,7 +2,7 @@
   "name": "cupa-dev-test",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://rzamudio.github.io/cupa-dev-test/",
+  "homepage": "https://rzamudio.github.io",
   "dependencies": {
     "@tanstack/react-query": "^5.77.0",
     "@testing-library/dom": "^10.4.0",
