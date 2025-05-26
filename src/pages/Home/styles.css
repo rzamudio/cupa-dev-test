@@ -1,0 +1,25 @@
+.home_container {
+  display: flex;
+  flex-direction: column;
+  width: 278px;
+  background-color: white;
+  border: 1px solid #c7e6fe;
+  text-align: center;
+}
+
+.branding {
+  font-weight: 700;
+  font-size: 16px;
+  margin-top: 48px;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 36px;
+  margin-top: 50px;
+}
+
+.home_buttons_container {
+  margin-top: 2px;
+  justify-content: center;
+}

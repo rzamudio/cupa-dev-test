@@ -1,0 +1,48 @@
+.activity_container {
+  display: flex;
+  flex-direction: column;
+  width: 614px;
+  background-color: white;
+  border: 1px solid #c7e6fe;
+}
+
+.header_container {
+  align-self: flex-start;
+  margin: 0px 48px 0px 48px;
+  text-align: left;
+}
+
+.activity_counter {
+  font-weight: 700;
+  font-size: 16px;
+  margin-top: 48px;
+}
+
+.question_counter {
+  font-weight: 700;
+  font-size: 36px;
+}
+
+.question_container {
+  font-size: 16px;
+  padding: 26px 48px 25px 48px;
+  border-top: 1px solid #c7e6fe;
+  background: #fdfbfc;
+}
+
+.question_buttons_container {
+  display: flex;
+  justify-content: center;
+  flex: auto;
+  text-align: center;
+  margin-top: 2px;
+  font-weight: 700;
+}
+
+.button_item {
+  flex: 1;
+}
+
+.empty_container {
+  margin-top: 221px;
+}

@@ -1,0 +1,77 @@
+.activity_container {
+  display: flex;
+  flex-direction: column;
+  width: 614px;
+  background-color: white;
+  border: 1px solid #c7e6fe;
+}
+
+.header_container {
+  align-self: flex-start;
+  margin: 0px 48px 0px 48px;
+  text-align: center;
+}
+
+.results_item_container {
+  display: flex;
+  justify-content: space-between;
+  padding: 22px 32px 22px 32px;
+  font-weight: 700;
+  background: #fdfbfc;
+  border-top: 1px solid #c7e6fe;
+}
+
+.results_item_container_no_flex {
+  justify-content: space-between;
+  padding: 22px 32px 22px 32px;
+  font-weight: 700;
+  background: #fdfbfc;
+  border-top: 1px solid #c7e6fe;
+}
+
+.results_question_number {
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.results_evaluated_answer {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.results_evaluated_answer_center {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.back {
+  font-weight: 700;
+  font-size: 16px;
+  padding-top: 78px;
+  padding-bottom: 48px;
+  border-top: 1px solid #c7e6fe;
+}
+
+.results_question_item {
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.hide-scroll_view {
+  max-height: 231px;
+  overflow-y: scroll;
+}
+
+/* styles.css */
+.hide-scroll_view {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+
+.hide-scroll_view::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}
+
+.hide-scroll_view::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}
